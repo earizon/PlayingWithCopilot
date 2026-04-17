@@ -2,6 +2,7 @@
   const btn = document.getElementById('fetchBtn');
   const resultBox = document.getElementById('resultBox');
   const historyBody = document.getElementById('historyBody');
+  const MAX_HISTORY = 5;
 
   function formatDate(d){
     const pad = n => String(n).padStart(2,'0');
@@ -19,8 +20,13 @@
     tr.appendChild(tdVal);
     tr.appendChild(tdTime);
     if(historyBody){
+      // prepend new entry
       if(historyBody.firstChild) historyBody.insertBefore(tr, historyBody.firstChild);
       else historyBody.appendChild(tr);
+      // enforce max history length
+      while(historyBody.children.length > MAX_HISTORY){
+        historyBody.removeChild(historyBody.lastChild);
+      }
     }
   }
 
