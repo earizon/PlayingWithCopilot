@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Random Number — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1 class="title">Random Number Generator</h1>
+      <p class="subtitle">Click the button to fetch a beautifully random number from the server.</p>
+
+      <div class="controls">
+        <input id="resultBox" class="result" type="text" readonly placeholder="Result will appear here" aria-label="Result" />
+        <button id="fetchBtn" class="btn">Get Random</button>
+      </div>
+
+      <footer class="foot">Made with ❤️ — FastAPI + Vanilla JS</footer>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
