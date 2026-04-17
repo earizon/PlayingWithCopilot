@@ -1,6 +1,28 @@
 (function(){
   const btn = document.getElementById('fetchBtn');
   const resultBox = document.getElementById('resultBox');
+  const historyBody = document.getElementById('historyBody');
+
+  function formatDate(d){
+    const pad = n => String(n).padStart(2,'0');
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+
+  function addHistoryEntry(value){
+    const tr = document.createElement('tr');
+    const tdVal = document.createElement('td');
+    tdVal.textContent = value;
+    tdVal.className = 'hist-value';
+    const tdTime = document.createElement('td');
+    tdTime.textContent = formatDate(new Date());
+    tdTime.className = 'hist-time';
+    tr.appendChild(tdVal);
+    tr.appendChild(tdTime);
+    if(historyBody){
+      if(historyBody.firstChild) historyBody.insertBefore(tr, historyBody.firstChild);
+      else historyBody.appendChild(tr);
+    }
+  }
 
   async function fetchRandom(){
     try{
@@ -12,6 +34,9 @@
       if(!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       resultBox.value = data?.result ?? '';
+
+      // add to history
+      addHistoryEntry(data?.result ?? '');
 
       btn.textContent = prev;
       btn.disabled = false;
